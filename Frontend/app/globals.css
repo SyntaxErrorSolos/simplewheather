@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: rgb(185, 238, 174);
+  background: linear-gradient(
+    223deg,
+    rgba(185, 238, 174, 0.7876284302783614) 2%,
+    rgba(203, 235, 177, 1) 7%,
+    rgba(216, 201, 186, 1) 24%,
+    rgba(202, 204, 199, 1) 34%,
+    rgba(190, 197, 221, 1) 44%,
+    rgba(187, 202, 213, 1) 60%,
+    rgba(235, 177, 203, 1) 75%,
+    rgba(186, 148, 233, 0.8072362734156162) 100%
+  );
+}
+
+.bg {
+  --tw-bg-opacity: 1;
+  background-color: rgb(82 82 82 / var(--tw-bg-opacity));
+}
