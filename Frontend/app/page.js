@@ -13,11 +13,11 @@ export default function Home() {
         method: "GET",
         mode: "cors",
         headers: {
-          city: enter.value,
+          city: search.value,
         },
       })
         .then((response) => response.json())
-        .then((date) => {
+        .then((data) => {
           const temp = data.current.temp_c;
           wheather.innerText = `${temp}°c`;
         });
