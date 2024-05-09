@@ -4,8 +4,24 @@ import { useEffect } from "react";
 export default function Home() {
   useEffect(() => {
     const wheather = document.getElementById("wheather");
-    const wind = document.getElementById("wind_kph");
-    const humidity = document.getElementById("humidity");
+    const search = document.getElementById("search");
+    const enter = document.getElementById("enter");
+
+    enter.addEventListener("click", function () {
+      if (search.value === "") return;
+      fetch("http://localhost:3001/wheathercity", {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          city: enter.value,
+        },
+      })
+        .then((response) => response.json())
+        .then((date) => {
+          const temp = data.current.temp_c;
+          wheather.innerText = `${temp}°c`;
+        });
+    });
 
     const runFunction = function () {
       if (navigator.geolocation) {
@@ -23,11 +39,7 @@ export default function Home() {
             .then((response) => response.json())
             .then((data) => {
               const tempC = data.current.temp_c;
-              const windkph = data.current.wind_kph;
-              const humidity2 = data.current.humidity;
               wheather.innerText = `${tempC}°c`;
-              wind.innerText = `Wind is ${windkph}kph |`;
-              humidity.innerText = `Humidity is ${humidity2}%`;
             });
         });
       }
@@ -37,31 +49,25 @@ export default function Home() {
   }, []);
   return (
     <main className="flex-col flex justify-center items-center h-screen">
-      <div className=" bg-neutral-500 bg-opacity-40 rounded-lg w-[48rem] h-[20rem]">
-        <h1
-          id="wheather"
-          className="text-center text-[10rem] text-zinc-100 font-bold opacity-100 bg-clip-text rounded-lg"
+      <div>
+        <input
+          id="search"
+          placeholder="Search"
+          className="w-[38rem] text-center outline-none text-3xl font-bold h-[5rem] rounded-full border-white border-y-2 border-x-2 "
+        ></input>
+        <button
+          id="enter"
+          className="bg-none border-white border-y-2 border-x-2 rounded-full w-20 h-10 text-white font-bold space-x-10"
         >
-          Loading
-        </h1>
-        <div
-          id="other"
-          className="flex items-center justify-center space-x-3 text-center"
-        >
-          <h2
-            id="wind_kph"
-            className="text-2xl text-zinc-100 font-medium opacity-100"
-          >
-            Loading wind |
-          </h2>
-          <h2
-            id="humidity"
-            className="text-2xl text-zinc-100 font-medium opacity-100"
-          >
-            Loading Humidity
-          </h2>
-        </div>
+          Enter
+        </button>
       </div>
+      <h1
+        id="wheather"
+        className="text-center text-[10rem] text-zinc-100 font-bold opacity-100 bg-clip-text rounded-lg"
+      >
+        Loading
+      </h1>
     </main>
   );
 }
