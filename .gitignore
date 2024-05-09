@@ -1,3 +1,4 @@
 /Frontend/.next
 /Frontend/node_modules
-/Backend
+/Backend/node_modules
+/Backend/config.json
